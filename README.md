@@ -12,16 +12,18 @@ Hence, change your code respectively otherwise the code won't work
 Step 1:
 Create your database on phpmyadmin
 or use the below script to create the databse
-CREATE TABLE IF NOT EXISTS 'users' (
-'id' int(20) NOT NULL AUTO_INCREMENT,
-'username' varchar(70) NOT NULL,
-'password' varchar(40) NOT NULL,
-'email' varchar(50) NOT NULL,
-PRIMARY KEY ('id'),
-UNIQUE KEY 'email' ('email')
-);
+
+	CREATE TABLE IF NOT EXISTS 'users' (
+	'id' int(20) NOT NULL AUTO_INCREMENT,
+	'username' varchar(70) NOT NULL,
+	'password' varchar(40) NOT NULL,
+	'email' varchar(50) NOT NULL,
+	PRIMARY KEY ('id'),
+	UNIQUE KEY 'email' ('email')
+	);
 
 Once the database is created now write the php script
+
 Step 2:
 
 The following php script is used to do the login and registration actions
@@ -30,8 +32,8 @@ user.php
 
 	<?php
 
-	$link=mysql_connect("localhost","root","");
-	mysql_select_db("androidlogin",$link);
+	$link=mysql_connect("localhost","YOUR USERNAME","YOUR PASSWORD");
+	mysql_select_db("DATABASE NAME",$link);
 
 	class User
 	{
@@ -57,7 +59,7 @@ user.php
 	
 	public function createNewRegisterUser($username, $password, $email){
 			
-		$query = "insert into users (username, password, email, created_at, updated_at) values ('$username', '$password', '$email', NOW(), NOW())";
+		$query = "insert into users (username, password, email, created_at, updated_at) values ('$username', '$password', '$email')";
 		
 		$row=mysql_query($query);
 		if($row>0)
