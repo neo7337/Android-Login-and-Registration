@@ -28,11 +28,13 @@ The following php script is used to do the login and registration actions
 
 user.php
 
-<?php
-$link=mysql_connect("localhost","root","");
-mysql_select_db("androidlogin",$link);
+	<?php
 
-class User{
+	$link=mysql_connect("localhost","root","");
+	mysql_select_db("androidlogin",$link);
+
+	class User
+	{
 	
 	private $db;
 	private $db_table = "users";
@@ -80,70 +82,81 @@ class User{
 		}
 		return $json;
 	}
-
-}
-?>
+	}
+	?>
 
 index.php
 
-<?php
+	<?php
 
-require_once 'include/user.php';
+	require_once 'include/user.php';
 
-$username = "";
-$password = "";
-$email = "";
+	$username = "";
+	$password = "";
+	$email = "";
 
-if(isset($_POST['username'])){
-	$username = $_POST['username'];
-}
-if(isset($_POST['password'])){
-    $password = $_POST['password'];
-}
-if(isset($_POST['email'])){
-	$email = $_POST['email'];
-}
+	if(isset($_POST['username'])){
+		$username = $_POST['username'];
+	}
+	if(isset($_POST['password'])){
+	    $password = $_POST['password'];
+	}
+	if(isset($_POST['email'])){
+		$email = $_POST['email'];
+	}
 
-// Instance of a User class
-$userObject = new User();
+	// Instance of a User class
+	$userObject = new User();
 
-// Registration of new user
-if(!empty($username) && !empty($password) && !empty($email)){
-	$hashed_password = md5($password);
-	$json_registration = $userObject->createNewRegisterUser($username, $hashed_password, $email);
-	
-	echo json_encode($json_registration);
-}
+	// Registration of new user
+	if(!empty($username) && !empty($password) && !empty($email)){
+		$hashed_password = md5($password);
+		$json_registration = $userObject->createNewRegisterUser($username, $hashed_password, $email);
 
-// User Login
-if(!empty($username) && !empty($password) && empty($email)){
-	$hashed_password = md5($password);	
-    $json_array = $userObject->loginUsers($username, $hashed_password);
+		echo json_encode($json_registration);
+	}
 
-    echo json_encode($json_array);
-}
+	// User Login
+	if(!empty($username) && !empty($password) && empty($email)){
+		$hashed_password = md5($password);	
+	    $json_array = $userObject->loginUsers($username, $hashed_password);
 
-?>
+	    echo json_encode($json_array);
+	}
+
+	?>
 
 once you have written the scripts and saved in the folder inside htdocs they are ready to go
 but keep in mind that I am using the mysql format for database queries if you are working in the mysqli format do change it otherwise the script won't work
 
 Step 3:
-create your RegisterActivity.java file inside the src folder of your app
+create your 
+	
+	RegisterActivity.java 
+	
+file inside the src folder of your app
 
 Step 4: 
-similarly create your MainActivity.java and LoginActivity.java files
 
-all these files can be downloaded from above
+similarly create your 
+
+	MainActivity.java and LoginActivity.java 
+	
+files all these files can be downloaded from above
 
 Step 5:
-create the layout file activty_main.xml, activity_login.xml and activity_register.xml from the above given files
 
+create the layout file 
+
+	activty_main.xml, activity_login.xml and activity_register.xml
+	
+from the above given files
 Similarly give create the strings.xml 
 
 now at the end it is most important to include the line inside your manifest file
-<uses-permission android:name="android.permission.INTERNET" />
+	
+	<uses-permission android:name="android.permission.INTERNET" />
 
-the above is responsible for your app to connect through internet to your localhost
+	the above is responsible for your app to connect through internet to your localhost
 
-and keep in mind that the device and the machine on which the local host is installed must be using the same network.
+	and keep in mind that the device and the machine on which the local host is installed must be using the same network.
