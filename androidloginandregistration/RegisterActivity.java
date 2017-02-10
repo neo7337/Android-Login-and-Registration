@@ -39,7 +39,9 @@ public class RegisterActivity extends ActionBarActivity {
     private EditText password;
     private EditText email;
     protected String enteredUsername;
-    private final String serverUrl = "http://192.168.43.72/androidlogin/index.php";
+    //this is the location of your index.php file 
+    //use the ipconfig command on your cmd to get the ipv4 address and use that address in place of the XXX.XXX.XXX.XXX
+    private final String serverUrl = "http://XXX.XXX.XXX.XXX/androidlogin/index.php";
 
 
     @Override
